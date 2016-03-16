@@ -30,6 +30,7 @@ ext {
     gson = "2.4"
 
     circleImage = "2.0.0"
+    klog = "0.0.1"
 
     //Test
     jUnit = '4.12'
@@ -59,7 +60,8 @@ ext {
             imageSlider         : "com.daimajia.slider:library:${imageSlider}",
             nineOld             : "com.nineoldandroids:library:${nineOld}",
             gson                : "com.google.code.gson:gson:${gson}",
-            circleImage         : "de.hdodenhof:circleimageview:${circleImage}"
+            circleImage         : "de.hdodenhof:circleimageview:${circleImage}",
+            klog                : "com.github.zhaokaiqiang.klog:library:${klog}"
     ]
 
 

@@ -15,7 +15,7 @@ public abstract class BaseActivity extends AppCompatActivity{
     DataLayer dataLayer;
 
     public BaseActivity() {
-        dataLayer = new DataLayer();
+        dataLayer = DataLayer.getInstance();
     }
 
     protected abstract void onAfterCreate(Bundle savedInstanceState);

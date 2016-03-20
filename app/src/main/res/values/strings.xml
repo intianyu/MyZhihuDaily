@@ -6,4 +6,5 @@
     <string name="right">版权</string>
     <string name="no_news">没有新闻</string>
     <string name="load_fail">加载失败,请重试</string>
+    <string name="title_activity_news_detail">NewsDetailActivity</string>
 </resources>

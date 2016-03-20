@@ -23,7 +23,7 @@ public abstract class BaseFragment extends Fragment{
     DataLayer mDataLayer;
 
     public BaseFragment() {
-        mDataLayer = new DataLayer();
+        mDataLayer = DataLayer.getInstance();
     }
 
     @Nullable

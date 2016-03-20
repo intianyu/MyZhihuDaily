@@ -7,4 +7,7 @@
     <string name="no_news">没有新闻</string>
     <string name="load_fail">加载失败,请重试</string>
     <string name="title_activity_news_detail">NewsDetailActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.rainfool.zhihudailyrrdcopy.ui.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,9 @@ import android.widget.Toast;
 import com.rainfool.zhihudailyrrdcopy.R;
 import com.rainfool.zhihudailyrrdcopy.base.BaseFragment;
 import com.rainfool.zhihudailyrrdcopy.base.DividerItemDecoration;
+import com.rainfool.zhihudailyrrdcopy.constant.BundleKey;
 import com.rainfool.zhihudailyrrdcopy.model.TodayNews;
+import com.rainfool.zhihudailyrrdcopy.ui.Activity.NewsDetailActivity;
 import com.rainfool.zhihudailyrrdcopy.ui.Adapter.NewsListAdapter;
 import com.socks.library.KLog;
 
@@ -155,7 +158,13 @@ public class NewsListFragment extends BaseFragment implements SwipeRefreshLayout
      */
     @Override
     public void onClick(View v) {
-
+        final int position = mRcvNewsList.getChildAdapterPosition(v);
+        if (RecyclerView.NO_POSITION != position) {
+            TodayNews.Story story = mNewsListAdapter.getItemData(position);
+            Intent intent = new Intent(getActivity(),NewsDetailActivity.class);
+            intent.putExtra(BundleKey.STORY,story);
+            getActivity().startActivity(intent);
+        }
     }
 
 

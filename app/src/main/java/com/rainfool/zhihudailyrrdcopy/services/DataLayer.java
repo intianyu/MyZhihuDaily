@@ -1,6 +1,7 @@
 package com.rainfool.zhihudailyrrdcopy.services;
 
 import com.google.gson.Gson;
+import com.rainfool.zhihudailyrrdcopy.model.News;
 import com.rainfool.zhihudailyrrdcopy.model.TodayNews;
 import com.rainfool.zhihudailyrrdcopy.protocol.ClientApi;
 import com.rainfool.zhihudailyrrdcopy.protocol.ClientFactory;
@@ -61,12 +62,44 @@ public class DataLayer {
     }
 
     /**
+     * 从网络上获取新闻
+     */
+    public Observable<News> getNews(long newsId) {
+        return api.getNews(newsId);
+    }
+
+    /**
+     * 从本地获取新闻
+     */
+    public Observable<News> getLocalNews(final String id) {
+        return Observable.create(new Observable.OnSubscribe<News>() {
+            @Override
+            public void call(Subscriber<? super News> subscriber) {
+                try {
+                    subscriber.onStart();
+                    String json = SpUtil.find(id);
+                    News news = getGson().fromJson(json, News.class);
+                    subscriber.onNext(news);
+                    subscriber.onCompleted();
+                } catch (Exception e) {
+                    subscriber.onError(e);
+                }
+            }
+        });
+    }
+    /**
      * 缓存数据
      * @return
      */
     public void cacheTodayNews(final TodayNews todayNews) {
         SpUtil.saveOrUpdate(todayNews.getDate(), getGson().toJson(todayNews));
     }
+
+    public void cacheNews(final News news) {
+        SpUtil.saveOrUpdate(String.valueOf(news.getId()), getGson().toJson(news));
+    }
+
+
 
     public Gson getGson() {
         return mGson;
